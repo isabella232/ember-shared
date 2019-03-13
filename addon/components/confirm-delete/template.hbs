@@ -1,0 +1,12 @@
+Confirm Delete
+
+{{#each model.resources as |r|}}
+  <p>{{r.displayName}}</p>
+{{/each}}
+
+{{action-cancel
+  mode="delete"
+  action=(action "delete")
+  cancel=(action "cancel")
+  errors=errors
+}}

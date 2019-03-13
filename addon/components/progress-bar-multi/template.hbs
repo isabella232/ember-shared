@@ -1,0 +1,16 @@
+<div class="progress">
+  {{~#each pieces as |obj|~}}
+    <div class="progress-bar {{obj.color}}" style={{obj.css}}></div>
+  {{~/each~}}
+</div>
+{{#if showTooltip}}
+  {{#attach-tooltip}}
+    {{#if (has-block)}}
+      {{yield percent model}}
+    {{else}}
+      {{#each pieces as |obj|}}
+        <div>{{obj.label}}: {{t 'generic.percent' value=obj.value}}</div>
+      {{/each}}
+    {{/if}}
+  {{/attach-tooltip}}
+{{/if}}

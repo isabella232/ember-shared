@@ -1,0 +1,10 @@
+<div class="progress">
+  <div style="width: {{width}}" class="progress-bar {{color}}"></div>
+</div>
+{{#attach-tooltip}}
+  {{#if (has-block)}}
+    {{yield percent model}}
+  {{else}}
+    {{t 'generic.percent' value=percent}}
+  {{/if}}
+{{/attach-tooltip}}

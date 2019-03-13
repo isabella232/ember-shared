@@ -1,0 +1,10 @@
+{{#copy-button
+  class=buttonClasses
+  clipboardTarget=target
+  clipboardText=text
+  success=(action 'success')
+  error=(action 'error')
+}}
+  {{~yield~}}
+  {{~#if icon~}}<i class="icon {{icon}}"></i>{{/if}}{{#if labelKey}} {{t labelKey}}{{/if}}
+{{/copy-button}}

@@ -1,0 +1,35 @@
+<section class="header clearfix">
+  <div class="right-buttons">
+    {{#if showUpload}}
+      <button class="btn bg-link icon-btn" {{action "upload"}}>
+        <i class="icon icon-file text-small"/>
+        {{t 'inputYaml.upload'}}
+      </button>
+    {{/if}}
+    {{#if showCopy}}
+      {{copy-to-clipboard
+        text=value
+        color="bg-link"
+      }}
+    {{/if}}
+    {{#if showDownload}}
+      <button class="btn bg-link icon-btn p-0" {{action "download"}}>
+        <i class="icon icon-download text-small"/>
+        {{t 'inputYaml.download'}}
+      </button>
+    {{/if}}
+  </div>
+  {{#if title}}
+    <h1>{{title}}</h1>
+  {{/if}}
+</section>
+
+<div class="col span-12 m-0 p-0 codemirror-container" style="overflow: auto;">
+  {{ivy-codemirror
+    placeholder=placeholder
+    value=value
+    valueUpdated=(if valueUpdated valueUpdated (action (mut value)) )
+    options=codeMirrorHash
+  }}
+</div>
+<input type="file" accept="{{actualAccept}}" multiple={{multiple}} class="hide">

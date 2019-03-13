@@ -1,0 +1,8 @@
+{{#each errors as |error|}}
+  <div style="background-color: red;" class="mb-20">{{error}}</div>
+{{/each}}
+
+{{async-button action=(action 'action') disabled=disabled mode=mode}}
+{{#if canCancel}}
+  <button type="button" class="btn bg-transparent" {{action 'cancel'}}>{{t 'generic.cancel'}}</button>
+{{/if}}

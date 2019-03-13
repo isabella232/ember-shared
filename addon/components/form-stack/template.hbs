@@ -1,0 +1,36 @@
+<label>{{t "formStack.label"}}</label>
+
+<div class="grid" style="grid-template-columns: 150px auto; grid-gap: 10px;">
+  <div>
+    <label class="radio standalone block">
+      {{radio-button selection=create value=false}}
+      {{t "formStack.existing"}}
+    </label>
+  </div>
+  <div>
+    {{new-select
+      content=stacks
+      action=(action "existingChanged")
+      optionLabelPath="displayName"
+      optionValuePath="id"
+      value=stack.id
+      prompt=(t "formStack.prompt")
+      cssDisabled=create
+      mouseDown=(action (mut create) false)
+    }}
+  </div>
+
+  <div>
+    <label class="radio standalone block">
+      {{radio-button selection=create value=true}}
+      {{t "formStack.create"}}
+    </label>
+  </div>
+  <div>
+    {{input
+      value=newStack.name
+      cssDisabled=(not create)
+      mouseDown=(action (mut create) true)
+    }}
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{{#basic-dropdown
+     renderInPlace=renderInPlace
+     verticalPosition=verticalPosition
+     horizontalPosition=horizontalPosition
+     matchTriggerWidth=matchTriggerWidth
+     triggerComponent=triggerComponent
+     contentComponent=contentComponent
+     calculatePosition=(action "calculatePosition" )
+     onOpen=onOpen
+     onClose=onClose
+     onFocus=onFocus
+     as |dd|}}
+  {{yield (assign
+      dd
+      (hash
+        trigger=(component dd.trigger
+        onMouseDown=(action "prevent")
+        onMouseEnter=(action "open" false)
+        onMouseLeave=(action "close" false))
+        content=(component dd.content
+          onMouseEnter=(action "open" true)
+          onMouseLeave=(action "close" true)
+        )
+      )
+    )
+  }}
+{{/basic-dropdown}}

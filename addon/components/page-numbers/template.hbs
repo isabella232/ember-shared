@@ -1,0 +1,23 @@
+<div class="pagination-container">
+  {{#if (gt content.totalPages 1)}}
+    <div class="btn-group btn-group-sm">
+      <a class="btn bg-default" disabled={{unless (gte content.page 2) 'disabled'}} {{action "pageClicked" 1}}>
+        |&lt;
+      </a>
+      <a class="btn bg-default" disabled={{unless canStepBackward 'disabled'}} {{action "incrementPage" -1}}>
+        &lt;
+      </a>
+
+      <div class="overview-text btn ml-5 mr-5">{{t textLabel pages=content.totalPages to=indexTo from=indexFrom count=totalCount}}</div>
+
+      <a class="btn bg-default" disabled={{unless canStepForward 'disabled'}} {{action "incrementPage" 1}}>
+        &gt;
+      </a>
+      <a class="btn bg-default" disabled={{if (gte content.page content.totalPages) 'disabled'}} {{action "pageClicked" content.totalPages}}>
+        &gt;|
+      </a>
+    </div>
+  {{else}}
+    <div class="overview-text">{{t textLabel pages=content.totalPages to=indexTo from=indexFrom count=totalCount}}</div>
+  {{/if}}
+</div>
