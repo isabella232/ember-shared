@@ -12,12 +12,12 @@ import { isArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import $ from 'jquery';
 
-import Sortable from 'shared/mixins/sortable-base';
-import StickyHeader from 'shared/mixins/sticky-table-header';
+import Sortable from '@rancher/ember-shared/mixins/sortable-base';
+import StickyHeader from '@rancher/ember-shared/mixins/sticky-table-header';
 import layout from './template';
 import pagedArray from 'ember-cli-pagination/computed/paged-array';
-import { isAlternate, isMore, isRange } from 'shared/utils/platform';
-import { PREF } from 'shared/utils/constants';
+import { isAlternate, isMore, isRange } from '@rancher/ember-shared/utils/platform';
+import { PREF } from '@rancher/ember-shared/utils/constants';
 
 export default Component.extend(Sortable, StickyHeader, {
   prefs:             service(),

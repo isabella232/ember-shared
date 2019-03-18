@@ -1,1 +1,1 @@
-export { default } from 'shared/components/input-number/component';
+export { default } from '@rancher/ember-shared/components/input-number/component';

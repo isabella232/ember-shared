@@ -1,1 +1,1 @@
-export { default } from 'shared/utils/table-headers';
+export { default } from '@rancher/ember-shared/utils/table-headers';

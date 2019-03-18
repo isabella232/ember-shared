@@ -1,1 +1,1 @@
-export { default } from 'shared/components/radio-button';
+export { default } from '@rancher/ember-shared/components/radio-button';

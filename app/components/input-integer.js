@@ -1,1 +1,1 @@
-export { default } from 'shared/components/input-integer/component';
+export { default } from '@rancher/ember-shared/components/input-integer/component';

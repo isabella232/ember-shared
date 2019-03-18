@@ -1,5 +1,5 @@
 import Service, { inject as service } from '@ember/service';
-import { stringify } from 'shared/utils/error';
+import { stringify } from '@rancher/ember-shared/utils/error';
 import { get } from '@ember/object';
 
 // import 'jgrowl';

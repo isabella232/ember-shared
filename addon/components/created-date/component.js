@@ -3,8 +3,8 @@ import { get, set, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { cancel, later } from '@ember/runloop';
 import moment from 'moment';
-import { PREF } from 'shared/utils/constants';
-import { escapeHtml } from 'shared/utils/string';
+import { PREF } from '@rancher/ember-shared/utils/constants';
+import { escapeHtml } from '@rancher/ember-shared/utils/string';
 import layout from './template';
 
 export default Component.extend({

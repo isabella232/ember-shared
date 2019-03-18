@@ -1,1 +1,1 @@
-export { default } from 'shared/helpers/to-json';
+export { default } from '@rancher/ember-shared/helpers/to-json';

@@ -1,1 +1,1 @@
-export { default } from 'shared/components/badge-state/component';
+export { default } from '@rancher/ember-shared/components/badge-state/component';

@@ -1,1 +1,1 @@
-export { default } from 'shared/components/principal-block/component';
+export { default } from '@rancher/ember-shared/components/principal-block/component';

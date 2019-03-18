@@ -1,7 +1,7 @@
 import TextArea from '@ember/component/text-area';
 import { get } from '@ember/object';
 
-import ThrottledResize from 'shared/mixins/throttled-resize';
+import ThrottledResize from '@rancher/ember-shared/mixins/throttled-resize';
 
 export default TextArea.extend(ThrottledResize, {
   tagName:           'textarea',

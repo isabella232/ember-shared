@@ -1,1 +1,1 @@
-export { default } from 'shared/services/theme';
+export { default } from '@rancher/ember-shared/services/theme';

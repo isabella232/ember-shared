@@ -3,8 +3,8 @@ import { inject as service } from '@ember/service';
 import { get } from '@ember/object';
 import { resolve } from 'rsvp';
 
-import Modal from 'shared/mixins/modal-base';
-import { eachLimit } from 'shared/utils/promise-limit';
+import Modal from '@rancher/ember-shared/mixins/modal-base';
+import { eachLimit } from '@rancher/ember-shared/utils/promise-limit';
 import layout from './template';
 
 export default Component.extend(Modal, {

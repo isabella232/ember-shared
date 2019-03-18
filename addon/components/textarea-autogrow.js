@@ -4,7 +4,7 @@ import { debounce, later } from '@ember/runloop'
 import { get, set, observer } from '@ember/object'
 import $ from 'jquery';
 
-import { isGecko } from 'shared/utils/platform';
+import { isGecko } from '@rancher/ember-shared/utils/platform';
 
 export default TextArea.extend({
   intl: service(),

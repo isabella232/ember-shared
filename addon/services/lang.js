@@ -2,8 +2,8 @@ import Service, { inject as service } from '@ember/service';
 import { get, set } from '@ember/object';
 import { resolve } from 'rsvp';
 import { all } from 'rsvp';
-import { COOKIE, PREF } from 'shared/utils/constants';
-import { loadScript } from 'shared/utils/load-script';
+import { COOKIE, PREF } from '@rancher/ember-shared/utils/constants';
+import { loadScript } from '@rancher/ember-shared/utils/load-script';
 
 const DEFAULT = 'en-us'; // If there's no setting/cookie, this will be used
 const BASE    = 'en-us'; // The base language translations are loaded in addition to the current language as a fallback

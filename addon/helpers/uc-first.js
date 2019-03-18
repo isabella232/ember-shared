@@ -1,5 +1,5 @@
 import { helper } from '@ember/component/helper';
-import { ucFirst } from 'shared/utils/string';
+import { ucFirst } from '@rancher/ember-shared/utils/string';
 
 export function ucFirstHelper(params) {
   return ucFirst(params[0]);

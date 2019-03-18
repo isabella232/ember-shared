@@ -1,1 +1,1 @@
-export { default } from 'shared/components/copy-to-clipboard/component';
+export { default } from '@rancher/ember-shared/components/copy-to-clipboard/component';

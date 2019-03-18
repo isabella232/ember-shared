@@ -5,10 +5,10 @@ import { Promise as EmberPromise, all } from 'rsvp';
 import layout from './template';
 import jsyaml from 'js-yaml';
 
-import { isSafari } from 'shared/utils/platform';
-import ThrottledResize from 'shared/mixins/throttled-resize';
-import { downloadFile } from 'shared/utils/download';
-import { PREF } from 'shared/utils/constants';
+import { isSafari } from '@rancher/ember-shared/utils/platform';
+import ThrottledResize from '@rancher/ember-shared/mixins/throttled-resize';
+import { downloadFile } from '@rancher/ember-shared/utils/download';
+import { PREF } from '@rancher/ember-shared/utils/constants';
 
 export default Component.extend(ThrottledResize, {
   growl: service(),

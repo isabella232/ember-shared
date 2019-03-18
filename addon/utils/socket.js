@@ -3,7 +3,7 @@ import Evented from '@ember/object/evented';
 import { bind, cancel, later } from '@ember/runloop';
 import { get, set } from '@ember/object';
 
-import { addQueryParam } from 'shared/utils/url';
+import { addQueryParam } from '@rancher/ember-shared/utils/url';
 
 var INSECURE     = 'ws://';
 var SECURE       = 'wss://';

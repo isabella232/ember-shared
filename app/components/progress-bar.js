@@ -1,1 +1,1 @@
-export { default } from 'shared/components/progress-bar/component';
+export { default } from '@rancher/ember-shared/components/progress-bar/component';

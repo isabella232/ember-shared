@@ -1,1 +1,1 @@
-export { default } from 'shared/components/textarea-fullheight';
+export { default } from '@rancher/ember-shared/components/textarea-fullheight';

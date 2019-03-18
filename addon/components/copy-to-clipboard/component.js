@@ -1,7 +1,7 @@
 import { get, set, computed } from '@ember/object';
 import { later, cancel } from '@ember/runloop';
 import Component from '@ember/component';
-import { isSafari } from 'shared/utils/platform';
+import { isSafari } from '@rancher/ember-shared/utils/platform';
 import layout from './template';
 
 const DELAY        = 1000;

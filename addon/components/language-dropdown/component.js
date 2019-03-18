@@ -1,7 +1,7 @@
 import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
 import layout from './template';
-import C from 'shared/utils/constants';
+import C from '@rancher/ember-shared/utils/constants';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 

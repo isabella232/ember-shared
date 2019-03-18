@@ -1,1 +1,1 @@
-export { default } from 'shared/components/sortable-th/component';
+export { default } from '@rancher/ember-shared/components/sortable-th/component';

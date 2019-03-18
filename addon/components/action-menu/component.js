@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import layout from './template';
 import { inject as service } from '@ember/service'
 import { computed, get, set } from '@ember/object';
-import calculatePosition from 'shared/utils/calculate-position';
+import calculatePosition from '@rancher/ember-shared/utils/calculate-position';
 
 
 export default Component.extend({

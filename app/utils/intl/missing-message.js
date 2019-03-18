@@ -1,1 +1,1 @@
-export { default } from 'shared/utils/intl/missing-message';
+export { default } from '@rancher/ember-shared/utils/intl/missing-message';

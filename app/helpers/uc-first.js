@@ -1,1 +1,1 @@
-export { default } from 'shared/helpers/uc-first';
+export { default } from '@rancher/ember-shared/helpers/uc-first';

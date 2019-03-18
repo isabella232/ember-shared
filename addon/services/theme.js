@@ -1,6 +1,6 @@
 import Service, { inject as service } from '@ember/service';
 import { get, set, computed } from '@ember/object';
-import { PREF, COOKIE } from 'shared/utils/constants';
+import { PREF, COOKIE } from '@rancher/ember-shared/utils/constants';
 
 const DEFAULT = 'dark'; // If there's no setting/cookie, this will be used
 

@@ -1,1 +1,1 @@
-export { default } from 'shared/components/async-button/component';
+export { default } from '@rancher/ember-shared/components/async-button/component';

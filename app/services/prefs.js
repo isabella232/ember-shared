@@ -1,1 +1,1 @@
-export { default } from 'shared/services/prefs';
+export { default } from '@rancher/ember-shared/services/prefs';

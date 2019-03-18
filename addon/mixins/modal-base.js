@@ -2,7 +2,7 @@ import Mixin from '@ember/object/mixin';
 import { inject as service } from '@ember/service';
 import { alias } from '@ember/object/computed';
 import { get } from '@ember/object'
-import { KEY } from 'shared/utils/platform';
+import { KEY } from '@rancher/ember-shared/utils/platform';
 
 export default Mixin.create({
   modal: service(),

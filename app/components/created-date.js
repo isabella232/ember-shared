@@ -1,1 +1,1 @@
-export { default } from 'shared/components/created-date/component';
+export { default } from '@rancher/ember-shared/components/created-date/component';

@@ -1,1 +1,1 @@
-export { default } from 'shared/components/confirm-delete/component';
+export { default } from '@rancher/ember-shared/components/confirm-delete/component';

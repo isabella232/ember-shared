@@ -1,1 +1,1 @@
-export { default } from 'shared/components/action-menu-item/component';
+export { default } from '@rancher/ember-shared/components/action-menu-item/component';

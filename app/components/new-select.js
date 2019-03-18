@@ -1,1 +1,1 @@
-export { default } from 'shared/components/new-select/component';
+export { default } from '@rancher/ember-shared/components/new-select/component';

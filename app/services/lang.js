@@ -1,1 +1,1 @@
-export { default } from 'shared/services/lang';
+export { default } from '@rancher/ember-shared/services/lang';

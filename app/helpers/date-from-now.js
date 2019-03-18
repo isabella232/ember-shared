@@ -1,1 +1,1 @@
-export { default } from 'shared/helpers/date-from-now';
+export { default } from '@rancher/ember-shared/helpers/date-from-now';

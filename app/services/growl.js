@@ -1,1 +1,1 @@
-export { default } from 'shared/services/growl';
+export { default } from '@rancher/ember-shared/services/growl';

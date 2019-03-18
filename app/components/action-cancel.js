@@ -1,1 +1,1 @@
-export { default } from 'shared/components/action-cancel/component';
+export { default } from '@rancher/ember-shared/components/action-cancel/component';

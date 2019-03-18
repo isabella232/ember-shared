@@ -1,4 +1,4 @@
-import Queue from 'shared/utils/queue';
+import Queue from '@rancher/ember-shared/utils/queue';
 import { Promise } from 'rsvp';
 
 export function eachLimit(items, limit, iterator) {

@@ -1,1 +1,1 @@
-export { default } from 'shared/components/input-yaml/component';
+export { default } from '@rancher/ember-shared/components/input-yaml/component';

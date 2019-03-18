@@ -1,1 +1,1 @@
-export { default } from 'shared/components/form-stack/component';
+export { default } from '@rancher/ember-shared/components/form-stack/component';

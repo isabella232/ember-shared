@@ -1,1 +1,1 @@
-export { default } from 'shared/helpers/format-bytes';
+export { default } from '@rancher/ember-shared/helpers/format-bytes';

@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 
-import config from './config/environment'
+import config from 'ember-get-config';
 
 const COOKIE_PREFIX = config.cookiePrefix || 'R_';
 const PREF_PREFIX = config.prefPrefix || 'r-';
@@ -72,3 +72,35 @@ export const STATES = {
 export const SUBSCRIBE = {
   DISCONNECTED_TIMEOUT: 30000,
 };
+
+export function addCookie(key, name, addPrefix=true) {
+  if ( addPrefix ) {
+    COOKIE[name] = `${ COOKIE_PREFIX }${name}`;
+  } else {
+    COOKIE[name] = name;
+  }
+}
+
+export function addHeader(key, name) {
+  HEADER[key] = name;
+}
+
+export function addPref(key, name, def=undefined, addPrefix=true) {
+  if ( def ) {
+    PREF_DEFAULTS[key] = def;
+  }
+
+  if ( addPrefix ) {
+    PREF[key] = `${ PREF_PREFIX }${name}`;
+  } else {
+    PREF[key] = name;
+  }
+}
+
+export function addSession(key, name) {
+  SESSION[key] = name;
+}
+
+export function addState(key, name) {
+  STATES[key] = name;
+}

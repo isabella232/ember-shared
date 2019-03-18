@@ -3,7 +3,7 @@ import layout from './template';
 import { cancel, later } from '@ember/runloop';
 import { oneWay } from '@ember/object/computed';
 import { get, set } from '@ember/object';
-import calculatePosition from 'shared/utils/calculate-position';
+import calculatePosition from '@rancher/ember-shared/utils/calculate-position';
 
 export default Component.extend({
   layout,

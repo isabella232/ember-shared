@@ -1,1 +1,1 @@
-export { default } from 'shared/components/modal-container/component';
+export { default } from '@rancher/ember-shared/components/modal-container/component';

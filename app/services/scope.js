@@ -1,1 +1,1 @@
-export { default } from 'shared/services/scope';
+export { default } from '@rancher/ember-shared/services/scope';

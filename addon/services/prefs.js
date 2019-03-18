@@ -1,7 +1,7 @@
 import Service, { inject as service } from '@ember/service';
 import { get, set, computed } from '@ember/object';
 import { resolve } from 'rsvp';
-import { PREF_DEFAULTS } from 'shared/utils/constants';
+import { PREF_DEFAULTS } from '@rancher/ember-shared/utils/constants';
 
 export default Service.extend({
   rancherStore: service(),

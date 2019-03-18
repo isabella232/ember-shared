@@ -1,1 +1,1 @@
-export { default } from 'shared/components/page-numbers/component';
+export { default } from '@rancher/ember-shared/components/page-numbers/component';

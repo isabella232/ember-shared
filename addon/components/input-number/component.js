@@ -1,6 +1,6 @@
 import { computed } from '@ember/object';
 import TextField from '@ember/component/text-field';
-import { isMobile } from 'shared/utils/platform';
+import { isMobile } from '@rancher/ember-shared/utils/platform';
 import layout from './template';
 
 function sanitize(val) {

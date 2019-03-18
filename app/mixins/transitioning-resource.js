@@ -1,1 +1,1 @@
-export { default } from 'shared/mixins/transitioning-resource';
+export { default } from '@rancher/ember-shared/mixins/transitioning-resource';

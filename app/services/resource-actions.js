@@ -1,1 +1,1 @@
-export { default } from 'shared/services/resource-actions';
+export { default } from '@rancher/ember-shared/services/resource-actions';

@@ -5,9 +5,9 @@ import { inject as service } from '@ember/service';
 import { isArray } from '@ember/array';
 
 import Resource from '@rancher/ember-api-store/models/resource';
-import ChildHook, { BEFORE_SAVE_HOOKS, AFTER_SAVE_HOOKS } from 'shared/mixins/child-hook';
+import ChildHook, { BEFORE_SAVE_HOOKS, AFTER_SAVE_HOOKS } from '@rancher/ember-shared/mixins/child-hook';
 
-import { stringify } from 'shared/utils/error';
+import { stringify } from '@rancher/ember-shared/utils/error';
 
 export const VIEW   = 'view';
 export const CREATE = 'create';

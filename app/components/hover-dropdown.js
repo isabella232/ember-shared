@@ -1,1 +1,1 @@
-export { default } from 'shared/components/hover-dropdown/component';
+export { default } from '@rancher/ember-shared/components/hover-dropdown/component';

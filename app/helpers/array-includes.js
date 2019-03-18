@@ -1,1 +1,1 @@
-export { default } from 'shared/helpers/array-includes';
+export { default } from '@rancher/ember-shared/helpers/array-includes';

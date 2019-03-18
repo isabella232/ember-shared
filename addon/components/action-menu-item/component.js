@@ -1,8 +1,8 @@
 import Component from '@ember/component';
 import layout from './template';
 import { inject as service } from '@ember/service'
-import C from 'shared/utils/constants';
-import { isAlternate } from 'shared/utils/platform';
+import C from '@rancher/ember-shared/utils/constants';
+import { isAlternate } from '@rancher/ember-shared/utils/platform';
 import { get, set, observer } from '@ember/object';
 
 export default Component.extend({

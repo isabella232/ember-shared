@@ -1,1 +1,1 @@
-export { default } from 'shared/helpers/format-gb';
+export { default } from '@rancher/ember-shared/helpers/format-gb';

@@ -3,8 +3,8 @@ import { computed, get } from '@ember/object';
 import { equal, alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Mixin from '@ember/object/mixin';
-import { ucFirst, sortableNumericSuffix } from 'shared/utils/string';
-import { addQueryParams } from 'shared/utils/url';
+import { ucFirst, sortableNumericSuffix } from '@rancher/ember-shared/utils/string';
+import { addQueryParams } from '@rancher/ember-shared/utils/url';
 
 function terminatedIcon(inst) {
   if ( get(inst, 'exitCode') === 0 ) {

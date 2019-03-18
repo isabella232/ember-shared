@@ -1,1 +1,1 @@
-export { default } from 'shared/components/check-box';
+export { default } from '@rancher/ember-shared/components/check-box';
