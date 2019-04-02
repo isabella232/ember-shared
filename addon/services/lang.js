@@ -8,22 +8,27 @@ import { loadScript } from '@rancher/ember-shared/utils/load-script';
 const DEFAULT = 'en-us'; // If there's no setting/cookie, this will be used
 const BASE    = 'en-us'; // The base language translations are loaded in addition to the current language as a fallback
 
+const RTL_LANGUAGES = ['fa-ir'];
+
 export default Service.extend({
   cookies:      service(),
   intl:         service(),
   prefs:        service(),
-  rancherStore: service(),
+  store:        service(),
   session:      service(),
 
   loadedLanguages: null,
   loadedPolyfill:  false,
+  authenticated:   alias('session.isAuthenticated'),
+  locales:         alias('intl.locales'),
+  generation:      1,
 
   init() {
     this._super(...arguments);
     this.loadedLanguages = [];
   },
 
-  getCurrent() {
+  current: computed('generation', function() {
     const cookies = get(this, 'cookies');
     const lang = cookies.read(COOKIE.LANG, { raw: true })
     const save = cookies.read(COOKIE.LANG_SAVE, { raw: true })
@@ -39,13 +44,13 @@ export default Service.extend({
     }
 
     return out;
-  },
+  }),
 
   setCurrent(lang) {
     const cookies = get(this, 'cookies');
-    const current = this.getCurrent();
+    const current = get(this, 'current');
 
-    if ( get(this, 'session.isAuthenticated') ) {
+    if ( get(this, 'authenticated') ) {
       if ( get(this, `prefs.${ PREF.LANG }`) !== lang ) {
         set(this, `prefs.${ PREF.LANG }`, lang);
       }
@@ -58,12 +63,13 @@ export default Service.extend({
 
     if ( existing !== lang ) {
       cookies.write(COOKIE.LANG, lang, COOKIE.LONG_LIVED);
+      set(this, 'generation', get(this, 'generation') + 1 );
     }
   },
 
   async switchLanguage(lang) {
     if ( !lang ) {
-      lang = this.getCurrent();
+      lang = get(this, 'current');
     }
 
     if ( lang === 'none' ) {
@@ -95,7 +101,7 @@ export default Service.extend({
       path = `/engines-dist/${ engine }${ path }`
     }
 
-    let res = await get(this, 'rancherStore').rawRequest({ url: path });
+    let res = await get(this, 'store').rawRequest({ url: path });
 
     await get(this, 'intl').addTranslations(lang, res.body)
 
@@ -108,4 +114,9 @@ export default Service.extend({
       await loadScript('/assets/intl/intl.min.js');
     }
   },
+
+  isRtl(lang) {
+    return RTL_LANGUAGES.includes(lang.toLowerCase());
+  },
+
 });

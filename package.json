@@ -1,6 +1,6 @@
 {
   "name": "@rancher/ember-shared",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Shared Ember components for Rancher Labs UI",
   "keywords": [
     "ember-addon"

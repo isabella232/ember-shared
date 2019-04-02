@@ -14,7 +14,8 @@ export const CREATE = 'create';
 export const EDIT   = 'edit';
 
 export default Mixin.create(ChildHook, {
-  intl: service(),
+  intl:   service(),
+  router: service(),
 
   tagName: 'form', // This indirectly disables global navigation shortcut keys
 
@@ -64,8 +65,9 @@ export default Mixin.create(ChildHook, {
 
   actions: {
     goToPrevious() {
-      if ( this.goToPrevious ) {
-        this.goToPrevious();
+      const router = get(this, 'router');
+      if ( router.goToPrevious ) {
+        router.goToPrevious();
       }
     },
 

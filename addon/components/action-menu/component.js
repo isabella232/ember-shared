@@ -4,7 +4,6 @@ import { inject as service } from '@ember/service'
 import { computed, get, set } from '@ember/object';
 import calculatePosition from '@rancher/ember-shared/utils/calculate-position';
 
-
 export default Component.extend({
   // tooltipService:  service('tooltip'),
   resourceActions: service('resource-actions'),

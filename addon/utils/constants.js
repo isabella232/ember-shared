@@ -81,8 +81,20 @@ export function addCookie(key, name, addPrefix=true) {
   }
 }
 
+export function addCookies(map, addPrefix=true) {
+  for ( let k in map ) {
+    addCookie(k, map[k], addPrefix);
+  }
+}
+
 export function addHeader(key, name) {
   HEADER[key] = name;
+}
+
+export function addHeaders(map) {
+  for ( let k in map ) {
+    addHeader(k, map[k]);
+  }
 }
 
 export function addPref(key, name, def=undefined, addPrefix=true) {
@@ -101,6 +113,18 @@ export function addSession(key, name) {
   SESSION[key] = name;
 }
 
+export function addSessions(map) {
+  for ( let k in map ) {
+    addSessions(k, map[k]);
+  }
+}
+
 export function addState(key, name) {
   STATES[key] = name;
+}
+
+export function addStates(map) {
+  for ( let k in map ) {
+    addStates(k, map[k]);
+  }
 }
