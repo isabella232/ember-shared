@@ -18,6 +18,10 @@ export default Component.extend(ThrottledResize, {
   layout,
   classNames: ['input-yaml'],
 
+  downloadClasses:  'btn bg-link icon-btn',
+  copyClasses:      'bg-link',
+  uploadClasses:    'btn bg-link icon-btn',
+
   name:             null,
   value:            null,
   placeholder:      '',

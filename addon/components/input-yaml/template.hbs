@@ -1,7 +1,7 @@
 <section class="header clearfix">
   <div class="right-buttons">
     {{#if showUpload}}
-      <button class="btn bg-link icon-btn" {{action "upload"}}>
+      <button class={{uploadClasses}} {{action "upload"}}>
         <i class="icon icon-file text-small"/>
         {{t 'inputYaml.upload'}}
       </button>
@@ -9,11 +9,11 @@
     {{#if showCopy}}
       {{copy-to-clipboard
         text=value
-        color="bg-link"
+        color=copyClasses
       }}
     {{/if}}
     {{#if showDownload}}
-      <button class="btn bg-link icon-btn p-0" {{action "download"}}>
+      <button class={{downloadClasses}} {{action "download"}}>
         <i class="icon icon-download text-small"/>
         {{t 'inputYaml.download'}}
       </button>

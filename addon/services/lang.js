@@ -1,5 +1,6 @@
 import Service, { inject as service } from '@ember/service';
-import { get, set } from '@ember/object';
+import { get, set, computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 import { resolve } from 'rsvp';
 import { all } from 'rsvp';
 import { COOKIE, PREF } from '@rancher/ember-shared/utils/constants';
@@ -14,7 +15,7 @@ export default Service.extend({
   cookies:      service(),
   intl:         service(),
   prefs:        service(),
-  store:        service(),
+  fetch:        service(),
   session:      service(),
 
   loadedLanguages: null,
@@ -101,11 +102,11 @@ export default Service.extend({
       path = `/engines-dist/${ engine }${ path }`
     }
 
-    let res = await get(this, 'store').rawRequest({ url: path });
+    let res = await get(this, 'fetch').request(path, { addBase: false });
 
-    await get(this, 'intl').addTranslations(lang, res.body)
+    await get(this, 'intl').addTranslations(lang, res)
 
-    console.log('Loaded', Object.keys(res.body).length, 'translations from', path);
+    console.log('Loaded', Object.keys(res).length, 'translations from', path);
   },
 
   async loadPolyfill() {

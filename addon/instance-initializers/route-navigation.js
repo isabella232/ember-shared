@@ -8,6 +8,10 @@ export function initialize(application) {
   // application.previousPaths = [];
 
   router.on('routeDidChange', (transition) => {
+    if ( !transition.to ) {
+      return;
+    }
+
     const name = transition.to.name;
     const args = router._argsFor(transition.to);
 
@@ -38,6 +42,22 @@ export function initialize(application) {
         if ( route.paramNames && route.paramNames.length ) {
           for ( let i = route.paramNames.length - 1 ; i >= 0 ; i-- ) {
             out.unshift(route.params[ route.paramNames[i] ]);
+          }
+        }
+
+        route = route.parent;
+      }
+
+      return out;
+    },
+
+    _keysFor(route) {
+      const out = [];
+
+      while ( route ) {
+        if ( route.paramNames && route.paramNames.length ) {
+          for ( let i = route.paramNames.length - 1 ; i >= 0 ; i-- ) {
+            out.unshift(route.paramNames[i]);
           }
         }
 

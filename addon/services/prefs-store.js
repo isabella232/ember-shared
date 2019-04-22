@@ -4,7 +4,7 @@ import { resolve } from 'rsvp';
 import { PREF_DEFAULTS } from '@rancher/ember-shared/utils/constants';
 
 export default Service.extend({
-  rancherStore: service(),
+  store: null, // define me
 
   findByName(key) {
     return get(this, 'unremoved').findBy('name', key);
@@ -46,7 +46,7 @@ export default Service.extend({
     }
 
     if ( !obj ) {
-      obj = get(this, 'rancherStore').createRecord({
+      obj = get(this, 'store').createRecord({
         type: 'preference',
         name: key,
       });
@@ -78,7 +78,7 @@ export default Service.extend({
     this.endPropertyChanges();
   },
 
-  unremoved: computed('rancherStore.generation', function() {
-    return get(this, 'rancherStore').all('preference');
+  unremoved: computed('store.generation', function() {
+    return get(this, 'store').all('preference');
   }),
 });

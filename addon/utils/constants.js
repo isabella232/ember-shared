@@ -2,8 +2,8 @@
 
 import config from 'ember-get-config';
 
-const COOKIE_PREFIX = config.cookiePrefix || 'R_';
-const PREF_PREFIX = config.prefPrefix || 'r-';
+const COOKIE_PREFIX = config.APP.cookiePrefix || 'R_';
+const PREF_PREFIX = config.APP.prefPrefix || 'r-';
 
 export const COOKIE = {
   AUTH:    `${ COOKIE_PREFIX }STATE`,
