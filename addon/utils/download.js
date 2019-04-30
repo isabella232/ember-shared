@@ -1,9 +1,10 @@
 import { all } from 'rsvp';
+// import { saveAs } from 'file-saver';
 
 export function downloadFile(fileName, content, contentType = 'text/plain;charset=utf-8') {
   const blob = new Blob([content], { type: contentType });
 
-  window.saveAs(blob, fileName);
+  // saveAs(blob, fileName);
 }
 
 // [{name: 'file1', file: 'data'}, {name: 'file2', file: 'data2'}]

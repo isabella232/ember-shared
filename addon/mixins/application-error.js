@@ -1,13 +1,14 @@
 import Mixin from '@ember/object/mixin';
 import { inject as service } from '@ember/service';
-import { get } from '@ember/object';
+import { get, set } from '@ember/object';
 
 export default Mixin.create({
   fastboot: service(),
+  loadingError: service(),
 
   actions: {
     error(err, transition) {
-      this.controllerFor('application').set('error', err);
+      set(this, 'loadingError.error', err);
 
       transition.abort();
 

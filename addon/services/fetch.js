@@ -197,13 +197,13 @@ export default Service.extend({
       opt.timeout = this.defaultTimeout;
     }
 
-    if ( opt.data ) {
+    if ( opt.body ) {
       if ( !opt.contentType ) {
         opt.contentType = 'application/json';
       }
 
-      if ( typeof opt.data === 'object' ) {
-        opt.data = JSON.stringify(opt.data);
+      if ( typeof opt.body === 'object' ) {
+        opt.body = JSON.stringify(opt.body);
       }
     }
 
