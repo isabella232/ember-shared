@@ -159,20 +159,6 @@ export default Component.extend(Sortable, StickyHeader, {
     },
   },
 
-  _tableClasssNames: computed('internalBulkActions', 'subRows', 'tableClassNames', function(){
-    const out = ['fixed', 'sortable-table'];
-
-    if ( get(this, 'internalBulkActions') ) {
-      out.push('has-actions');
-    }
-
-    if ( get(this, 'subRows') ) {
-      out.push('has-sub-rows');
-    }
-
-    return `${ out.join(' ') } ${ get(this, 'tableClassNames') || '' }`.trim();
-  }),
-
   // Pick a new sort if the current column disappears.
   headersChanged: observer('headers.@each.name', function() {
     let sortBy = get(this, 'sortBy');
@@ -284,7 +270,22 @@ export default Component.extend(Sortable, StickyHeader, {
 
     set(this, 'availableActions', out);
   }),
-  searchInPlace:   computed('search', 'searchToWormhole', function() {
+
+  _tableClasssNames: computed('internalBulkActions', 'subRows', 'tableClassNames', function(){
+    const out = ['fixed', 'sortable-table'];
+
+    if ( get(this, 'internalBulkActions') ) {
+      out.push('has-actions');
+    }
+
+    if ( get(this, 'subRows') ) {
+      out.push('has-sub-rows');
+    }
+
+    return `${ out.join(' ') } ${ get(this, 'tableClassNames') || '' }`.trim();
+  }),
+
+  searchInPlace: computed('search', 'searchToWormhole', function() {
     return get(this, 'search') && !get(this, 'searchToWormhole');
   }),
 

@@ -66,6 +66,7 @@ export default Mixin.create(ChildHook, {
   actions: {
     goToPrevious() {
       const router = get(this, 'router');
+
       if ( router.goToPrevious ) {
         router.goToPrevious();
       }

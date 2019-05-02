@@ -192,7 +192,7 @@ export default Mixin.create({
   isActive:        equal('state', 'active'),
 
   // You can override the state by providing your own relevantState and maybe reading from _relevantState
-  relevantState: alias('_relevantState'),
+  relevantState:  alias('_relevantState'),
   _relevantState: computed('state', function() {
     return get(this, 'state') || 'unknown';
   }),

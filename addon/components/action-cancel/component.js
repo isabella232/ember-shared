@@ -26,12 +26,15 @@ export default Component.extend({
     cancel() {
       if ( this.cancel ) {
         this.cancel(...arguments);
+
         return;
       }
 
       const router = get(this, 'router');
+
       if ( router && router.goToParent ) {
         router.goToParent();
+
         return;
       }
 

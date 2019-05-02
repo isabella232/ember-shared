@@ -1,6 +1,6 @@
 {
   "name": "@rancher/ember-shared",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Shared Ember components for Rancher Labs UI",
   "keywords": [
     "ember-addon"
@@ -26,6 +26,7 @@
     "babel-eslint": "^10.0.1",
     "broccoli-funnel": "^2.0.2",
     "buffer": "^5.2.1",
+    "ember-attacher": "^0.13.10",
     "ember-auto-import": "^1.2.19",
     "ember-basic-dropdown": "^1.1.0",
     "ember-cli-babel": "^7.1.2",
@@ -47,7 +48,6 @@
   "devDependencies": {
     "@ember/optional-features": "^0.6.3",
     "broccoli-asset-rev": "^2.7.0",
-    "ember-attacher": "^0.13.10",
     "ember-cli": "~3.8.0",
     "ember-cli-dependency-checker": "^3.1.0",
     "ember-cli-eslint": "^4.2.3",

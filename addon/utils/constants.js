@@ -22,6 +22,16 @@ export const COOKIE = {
     maxAge: 365 * 86400,
     path:   '/',
     secure: true,
+  },
+
+  SESSION_SCOPED: {
+    path:   '/',
+    secure: true,
+  },
+
+  SESSION_SCOPED_RAW: {
+    path:   '/',
+    secure: true,
     raw:    true,
   },
 
@@ -73,15 +83,15 @@ export const SUBSCRIBE = {
   DISCONNECTED_TIMEOUT: 30000,
 };
 
-export function addCookie(key, name, addPrefix=true) {
+export function addCookie(key, name, addPrefix = true) {
   if ( addPrefix ) {
-    COOKIE[name] = `${ COOKIE_PREFIX }${name}`;
+    COOKIE[name] = `${ COOKIE_PREFIX }${ name }`;
   } else {
     COOKIE[name] = name;
   }
 }
 
-export function addCookies(map, addPrefix=true) {
+export function addCookies(map, addPrefix = true) {
   for ( let k in map ) {
     addCookie(k, map[k], addPrefix);
   }
@@ -97,13 +107,13 @@ export function addHeaders(map) {
   }
 }
 
-export function addPref(key, name, def=undefined, addPrefix=true) {
+export function addPref(key, name, def = undefined, addPrefix = true) {
   if ( def ) {
     PREF_DEFAULTS[key] = def;
   }
 
   if ( addPrefix ) {
-    PREF[key] = `${ PREF_PREFIX }${name}`;
+    PREF[key] = `${ PREF_PREFIX }${ name }`;
   } else {
     PREF[key] = name;
   }

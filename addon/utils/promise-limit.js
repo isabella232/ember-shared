@@ -1,7 +1,7 @@
 import Queue from '@rancher/ember-shared/utils/queue';
 import { Promise } from 'rsvp';
 
-export function eachLimit(items, limit, iterator, debug=false) {
+export function eachLimit(items, limit, iterator, debug = false) {
   if ( debug ) {
     console.log('eachLimit of', items.length, ' items', limit, 'at a time');
   }

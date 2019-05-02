@@ -38,6 +38,7 @@ export default Mixin.create({
 
     if ( get(this, 'groupByRef') ) {
       const groupSortBy = `${ get(this, 'groupByRef') }.displayName`;
+
       sort.push(groupSortBy);
     }
 

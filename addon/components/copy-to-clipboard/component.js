@@ -4,7 +4,7 @@ import Component from '@ember/component';
 import { isSafari } from '@rancher/ember-shared/utils/platform';
 import layout from './template';
 
-const DELAY        = 1000;
+const DELAY = 1000;
 
 const NORMAL = 'normal';
 const SUCCESS = 'success';
@@ -14,7 +14,7 @@ const isSupported = !isSafari || (document && document.queryCommandSupported('co
 
 export default Component.extend({
   layout,
-  tagName: '',
+  tagName: 'span',
 
   // Provide one or the other for the content
   target: null, // CSS selector to get text from
@@ -76,12 +76,24 @@ export default Component.extend({
 
     set(this, 'state', state);
 
-    set(this, 'timer', later(() => {
-      if ( this.isDestroyed || this.isDestroying ) {
-        return;
-      }
-      set(this, 'state', NORMAL);
-    }, DELAY));
+    const $btn = this.$('BUTTON');
+    let width = $btn.width();
+    width += parseInt($btn.css('padding-left'), 10) || 0;
+    width += parseInt($btn.css('padding-right'), 10) || 0;
+
+    $btn.css('width', width + 'px');
+
+    set(this, 'timer', later(this, 'tempDone', DELAY));
   },
 
+  tempDone() {
+    if ( this.isDestroyed || this.isDestroying ) {
+      return;
+    }
+
+    const $btn = this.$('BUTTON');
+    $btn.css('width', '');
+
+    set(this, 'state', NORMAL);
+  },
 });

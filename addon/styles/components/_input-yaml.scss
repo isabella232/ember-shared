@@ -13,8 +13,10 @@
     text-align: right;
   }
 
-  .codemirror-container {
-    border: 1px solid var(--input-border);
+  &:not(.read-only) {
+    .codemirror-container {
+      border: 1px solid var(--input-border);
+    }
   }
 
   .CodeMirror {

@@ -47,6 +47,7 @@ export default Service.extend({
 
     if ( shoebox ) {
       let cached = shoebox.retrieve(cacheKey);
+
       if ( opt.persistentCache !== true ) {
         shoebox.remove(cacheKey);
       }
@@ -76,7 +77,7 @@ export default Service.extend({
       return resolve();
     }
 
-      return resolve(xhr.body);
+    return resolve(xhr.body);
   },
 
   _requestFailed(xhr, opt) {

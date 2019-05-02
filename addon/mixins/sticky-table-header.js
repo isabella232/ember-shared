@@ -95,9 +95,7 @@ export default Mixin.create({
 
     let $elem           = $(this.element);
     let $header         = $elem.find('> .header');
-    let $table          = $elem.find('> table');
     let scrollTop      = $(window).scrollTop();
-    let tableBottom     = $table.offset().top  + $table.height();
     let offset          = $elem.find('> table > thead > tr').offset().top - parseInt($elem.css('padding-top'), 10);
 
     if ( get(this, 'isFixed') ) {

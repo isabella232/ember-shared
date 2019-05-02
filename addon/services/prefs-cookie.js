@@ -1,6 +1,5 @@
 import Service, { inject as service } from '@ember/service';
 import { get, set, computed } from '@ember/object';
-import { resolve } from 'rsvp';
 import { PREF_DEFAULTS } from '@rancher/ember-shared/utils/constants';
 
 import config from 'ember-get-config';
@@ -40,7 +39,7 @@ export default Service.extend({
     if ( value === undefined ) {
       if ( obj ) {
         obj.set('value', undefined);
-        get(this, 'cookies').clear(`${config.prefPrefix}${key}`);
+        get(this, 'cookies').clear(`${ config.prefPrefix }${ key }`);
         this.notifyPropertyChange(key);
       }
 
@@ -58,8 +57,9 @@ export default Service.extend({
 
     if ( obj.get('value') !== neu ) {
       obj.set('value', neu);
-      get(this, 'cookies').write(`${config.prefPrefix}${name}`, neu);
+      get(this, 'cookies').write(`${ config.prefPrefix }${ name }`, neu);
       this.notifyPropertyChange(key);
+
       return neu;
     }
 
@@ -84,7 +84,11 @@ export default Service.extend({
 
     Object.keys(all).forEach((key) => {
       if ( key.startsWith(prefix) ) {
-        out.push({ type: 'preference', name: key.substr(prefix.length), value: all[key] });
+        out.push({
+          type:  'preference',
+          name:  key.substr(prefix.length),
+          value: all[key]
+        });
       }
     });
 

@@ -135,14 +135,14 @@ export function pluralize(count, singular, plural) {
   }
 }
 
-export function indent(lines, count=2, token=' ', afterRegex=null) {
+export function indent(lines, count = 2, token = ' ', afterRegex = null) {
   if ( typeof lines === 'string' ) {
     lines = lines.split(/\n/);
   } else {
     lines = lines || [];
   }
 
-  const padStr = (new Array(count+1)).join(token);
+  const padStr = (new Array(count + 1)).join(token);
 
   return lines.map((line) => {
     let prefix = '';
@@ -150,12 +150,13 @@ export function indent(lines, count=2, token=' ', afterRegex=null) {
 
     if ( afterRegex ) {
       const match = line.match(afterRegex);
+
       if ( match ) {
-        prefix = match[match.length-1];
+        prefix = match[match.length - 1];
         suffix = line.substr(match[0].length);
       }
     }
 
     return `${ prefix }${ padStr }${ suffix }`;
-  }).join("\n");
+  }).join('\n');
 }

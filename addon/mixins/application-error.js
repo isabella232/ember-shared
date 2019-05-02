@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 import { get, set } from '@ember/object';
 
 export default Mixin.create({
-  fastboot: service(),
+  fastboot:     service(),
   loadingError: service(),
 
   actions: {
@@ -25,6 +25,7 @@ export default Mixin.create({
       }
 
       this.intermediateTransitionTo('error');
+
       return false;
     },
   },

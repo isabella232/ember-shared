@@ -12,11 +12,13 @@ import { PREF } from '@rancher/ember-shared/utils/constants';
 
 export default Component.extend(ThrottledResize, {
   growl: service(),
-  theme: service(),
   prefs: service(),
+
+  themeService: service('theme'),
 
   layout,
   classNames: ['input-yaml'],
+  classNameBindings: ['readOnly'],
 
   downloadClasses:  'btn bg-link icon-btn',
   copyClasses:      'bg-link',
@@ -27,11 +29,15 @@ export default Component.extend(ThrottledResize, {
   placeholder:      '',
   fileChosen:       null,
 
+  theme:            null,  // A fixed theme that doesn't depend on theme service
+  themePrefix:      'xq',  // Or a prefix for {themePrefix}-{light,dark}
+
   showCopy:         true,
   showDownload:     true,
   showUpload:       true,
   accept:           'text/*, .yml, .yaml',
   multiple:         false,
+  readOnly:         false,
 
   autoResize:       false,
   footerSpace:      100,
@@ -65,18 +71,30 @@ export default Component.extend(ThrottledResize, {
     }
   }),
 
-  codeMirrorHash: computed('theme.current', `prefs.${ PREF.EDITOR_KEYMAP }`, 'codeMirrorOptions', function() {
+  codeMirrorHash: computed('themeService.current', 'readOnly', `prefs.${ PREF.EDITOR_KEYMAP }`, 'codeMirrorOptions', function() {
+    let theme;
+    const prefix = get(this, 'themePrefix');
+    if ( prefix ) {
+      theme = `${ prefix }-${ get(this, 'themeService.current') }`;
+    } else {
+      theme = get(this, 'theme') || 'default'
+    }
+
+    const readOnly = get(this, 'readOnly');
+
     let out = Object.assign({
-      autofocus:      true,
-      theme:          `base16-${ get(this, 'theme.current') }`,
-      tabSize:        2,
-      lineNumbers:    true,
-      mode:           'yaml',
-      readOnly:       false,
-      gutters:        ['CodeMirror-lint-markers'],
-      lint:           true,
-      lineWrapping:   true,
-      viewportMargin: Infinity,
+      theme,
+      readOnly,
+
+      autofocus:        true,
+      tabSize:          2,
+      lineNumbers:      true,
+      mode:             'yaml',
+      cursorBlinkRate:  (readOnly ? -1 : 530),
+      gutters:          ['CodeMirror-lint-markers'],
+      lint:             true,
+      lineWrapping:     true,
+      viewportMargin:   Infinity,
     }, get(this, 'codeMirrorOptions') || {});
 
     return out;
