@@ -36,9 +36,10 @@ export default Component.extend(Modal, {
       get(this, 'modal').hide();
 
       const after = get(model, 'after');
+
       if ( after ) {
         after(model);
-      };
+      }
     },
 
     cancel() {

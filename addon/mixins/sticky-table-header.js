@@ -11,7 +11,7 @@ let NEXT_ID = 1;
 export default Mixin.create({
   fastboot: service(),
 
-  stickyHeader: true,
+  stickyHeader:  true,
   scrollElement: window,
 
   isFixed: false,
@@ -47,7 +47,7 @@ export default Mixin.create({
     const val = get(this, 'scrollElement');
 
     if ( val === 'self' ) {
-      return thi.element;
+      return this.element;
     } else if ( typeof val === 'string' ) {
       return $(val)[0];
     } else {
@@ -75,7 +75,6 @@ export default Mixin.create({
     let $table          = $elem.find('> table');
 
     if ( get(this, 'isFixed') ) {
-      const scroll = $(get(this, '_scrollElement'));
       const left   = $table.offset().left;
       const width  = $table.width();
 

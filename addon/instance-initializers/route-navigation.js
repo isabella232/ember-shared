@@ -22,6 +22,7 @@ export function initialize(application) {
 
       if ( application.ignoreNextRoute ) {
         application.ignoreNextRoute = false;
+
         return;
       }
 

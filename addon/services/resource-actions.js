@@ -24,7 +24,7 @@ export default Service.extend({
     } else if ( context && context.send && context.actions && context.actions[actionName] ) {
       context.send(actionName, model);
     } else {
-      x = new Error(`Unknown action: ${ actionName }`);
+      const x = new Error(`Unknown action: ${ actionName }`);
       x.model = model;
       x.context = context;
       throw x;

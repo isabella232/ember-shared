@@ -48,6 +48,7 @@ export default Mixin.create({
 
       if ( header ) {
         let more = get(header, 'sort') || [];
+
         if ( more && !isArray(more) ) {
           more = [more];
         }

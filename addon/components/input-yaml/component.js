@@ -17,7 +17,7 @@ export default Component.extend(ThrottledResize, {
   themeService: service('theme'),
 
   layout,
-  classNames: ['input-yaml'],
+  classNames:        ['input-yaml'],
   classNameBindings: ['readOnly'],
 
   downloadClasses:  'btn bg-link',
@@ -74,6 +74,7 @@ export default Component.extend(ThrottledResize, {
   codeMirrorHash: computed('themeService.current', 'readOnly', `prefs.${ PREF.EDITOR_KEYMAP }`, 'codeMirrorOptions', function() {
     let theme;
     const prefix = get(this, 'themePrefix');
+
     if ( prefix ) {
       theme = `${ prefix }-${ get(this, 'themeService.current') }`;
     } else {

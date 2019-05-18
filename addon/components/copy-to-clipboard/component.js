@@ -78,10 +78,11 @@ export default Component.extend({
 
     const $btn = this.$('BUTTON');
     let width = $btn.width();
+
     width += parseInt($btn.css('padding-left'), 10) || 0;
     width += parseInt($btn.css('padding-right'), 10) || 0;
 
-    $btn.css('width', width + 'px');
+    $btn.css('width', `${ width }px`);
 
     set(this, 'timer', later(this, 'tempDone', DELAY));
   },
@@ -92,6 +93,7 @@ export default Component.extend({
     }
 
     const $btn = this.$('BUTTON');
+
     $btn.css('width', '');
 
     set(this, 'state', NORMAL);
