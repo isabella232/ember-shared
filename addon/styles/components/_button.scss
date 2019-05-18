@@ -6,10 +6,6 @@ $lg-padding: 18px 30px;
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
-button {
-  background: var(--default);
-}
-
 .btn,
 button,
 [class^='btn-'] {
@@ -25,10 +21,13 @@ button,
   border: 0 solid transparent;
   padding: $btn-padding;
   border-radius: 1.5px;
-  line-height: 1.5;
 
   &:hover {
       text-decoration: none;
+  }
+
+  &.bg-transparent {
+    color: var(--body-text);
   }
 }
 
@@ -88,12 +87,8 @@ button,
 .btn.disabled,
 .btn[disabled],
 fieldset[disabled] .btn {
-  @extend .bg-muted;
+  @extend .bg-disabled;
   cursor: not-allowed;
-
-  &:hover {
-      background: var(--muted);
-  }
 }
 
 //button group

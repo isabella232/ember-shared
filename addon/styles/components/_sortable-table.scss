@@ -49,7 +49,7 @@ $divider-height: 2px;
 
       &.check {
         position: relative;
-        padding: 12px 14px;
+        padding-left: 11px;
         cursor: pointer;
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -147,16 +147,16 @@ $divider-height: 2px;
         @include clearfix;
         height: $group-row-height;
         line-height: $group-row-height;
-        width: 25%;
         padding: 0 10px;
-        width: 150px;
         border-radius: 4px 4px 0px 0px;
         background-color: var(--sortable-table-accent-bg);
         position: relative;
         top: 0;
         display: inline-block;
         z-index: z-index('tableGroup');
+        min-width: $group-row-height * 1.8;
       }
+
       .group-tab:after {
         height: $group-row-height;
         width: 70px;
@@ -164,7 +164,7 @@ $divider-height: 2px;
         background-color: var(--sortable-table-accent-bg);
         content: "";
         position: absolute;
-        left: 104px;
+        right: -15px;
         top: 0px;
         transform: skewX(40deg);
         z-index: -1;
@@ -243,10 +243,11 @@ $divider-height: 2px;
 .header {
   position: relative;
   z-index: z-index('fixedTableHeader');
+
 }
 
 .fixed-header-actions {
-  min-height: 40px;
+  padding: 5px 11px;
   width: 100%;
   z-index: z-index('fixedTableHeader');
   background: var(--sortable-table-header-bg);
@@ -268,3 +269,8 @@ $divider-height: 2px;
   }
 }
 
+.yes-clip {
+  .maybe-clip {
+    @extend .clip;
+  }
+}

@@ -1,4 +1,6 @@
 <div class="header">
+  {{yield this 'prefix'}}
+
   {{#if showActionsRow}}
     <div class="fixed-header-actions row clearfix">
       {{#if internalBulkActions}}
@@ -90,6 +92,9 @@
           descending=descending
           action=(action "changeSort")
           header=header
+          baseIcon=sortBaseIcon
+          upIcon=sortUpIcon
+          downIcon=sortDownIcon
         }}
       {{/each}}
       {{#if rowActions}}

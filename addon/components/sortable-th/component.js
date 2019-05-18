@@ -13,6 +13,9 @@ export default Component.extend({
 
   sortable: null,
   header:   null,
+  baseIcon: 'icon-sort',
+  downIcon: 'icon-sort-down',
+  upIcon:   'icon-sort-up',
 
   current:    alias('sortable.sortBy'),
   descending: alias('sortable.descending'),

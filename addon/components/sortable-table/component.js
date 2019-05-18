@@ -45,6 +45,10 @@ export default Component.extend(Sortable, StickyHeader, {
   checkWidth:           40,
   actionsWidth:         40,
   tableClassNames:      null,
+  sortBaseIcon:         'icon-sort',
+  sortDownIcon:         'icon-sort-down',
+  sortUpIcon:           'icon-sort-up',
+  idField:              'id',
 
   availableActions:     null,
   selectedNodes:        null,
@@ -88,6 +92,8 @@ export default Component.extend(Sortable, StickyHeader, {
       watchKey = `pagedContent.@each.${ get(this, 'groupByKey').replace(/\..*/g, '') }`;
     }
 
+    let idField = get(this, 'idField');
+
     defineProperty(this, 'groupedContent', computed(watchKey, () => {
       let ary = [];
       let map = {};
@@ -96,8 +102,8 @@ export default Component.extend(Sortable, StickyHeader, {
       let refKey = get(this, 'groupByRef');
 
       get(this, 'pagedContent').forEach((obj) => {
-        let group = obj.get(groupKey) || '';
-        let ref = obj.get(refKey) || { displayName: group };
+        let group = get(obj, groupKey) || '';
+        let ref = get(obj, refKey) || { displayName: group };
         let entry = map[group];
 
         if ( entry ) {
@@ -114,7 +120,7 @@ export default Component.extend(Sortable, StickyHeader, {
 
         if ( get(this, 'selectedNodes').includes(obj) ) {
           run.next(this, () => {
-            toggleInput(obj, true);
+            toggleInput(obj, true, idField);
           });
         }
       });
@@ -164,12 +170,12 @@ export default Component.extend(Sortable, StickyHeader, {
     let sortBy = get(this, 'sortBy');
     let headers = get(this, 'headers') || [];
 
-    if ( headers && headers.get('length') ) {
+    if ( headers && get(headers, 'length') ) {
       let cur = headers.findBy('name', sortBy);
 
       if ( !cur ) {
         run.next(this, function() {
-          this.send('changeSort', headers.get('firstObject.name'));
+          this.send('changeSort', get(headers, 'firstObject.name'));
         });
       }
     }
@@ -216,7 +222,7 @@ export default Component.extend(Sortable, StickyHeader, {
     const map = {};
 
     get(this, 'pagedContent').forEach((node) => {
-      get(node, '_availableActions').forEach((act) => {
+      ( get(node, '_availableActions') || []).forEach((act) => {
         if ( !act.bulkable ) {
           return;
         }
@@ -235,7 +241,7 @@ export default Component.extend(Sortable, StickyHeader, {
     });
 
     nodes.forEach((node) => {
-      get(node, '_availableActions').forEach((act) => {
+      ( get(node, '_availableActions') || []).forEach((act) => {
         if ( !act.bulkable ) {
           return;
         }
@@ -304,7 +310,7 @@ export default Component.extend(Sortable, StickyHeader, {
     if (bulkActions && get(this, 'sortableContent')){
       let sortableContent = get(this, 'sortableContent');
 
-      return !!sortableContent.get('length');
+      return !!get(sortableContent, 'length');
     } else {
       return false;
     }
@@ -366,6 +372,7 @@ export default Component.extend(Sortable, StickyHeader, {
     let subSearchField = get(this, 'subSearchField');
     let subFields = get(this, 'subFields');
     let subMatches = null;
+    let idField = get(this, 'idField');
 
     if ( searchText.length ) {
       subMatches = {};
@@ -392,7 +399,7 @@ export default Component.extend(Sortable, StickyHeader, {
         }
 
         if ( subFields && subSearchField) {
-          let subRows = (row.get(subSearchField) || []);
+          let subRows = (get(row, subSearchField) || []);
 
           for ( let k = subRows.length - 1 ; k >= 0 ; k-- ) {
             let subFound = true;
@@ -417,7 +424,7 @@ export default Component.extend(Sortable, StickyHeader, {
             }
           }
 
-          subMatches[row.get('id')] = hits;
+          subMatches[get(row, idField)] = hits;
         }
 
         if ( !mainFound && hits === 0 ) {
@@ -513,7 +520,7 @@ export default Component.extend(Sortable, StickyHeader, {
       return;
     }
 
-    let node = content.findBy('id', nodeId);
+    let node = content.findBy(get(this, 'idField'), nodeId);
 
     if ( !node ) {
       return;
@@ -591,10 +598,10 @@ export default Component.extend(Sortable, StickyHeader, {
   groupIdx(node) {
     let grouped = get(this, 'groupedContent');
 
-    for ( let i = 0 ; i < grouped.get('length') ; i++ ) {
+    for ( let i = 0 ; i < get(grouped, 'length') ; i++ ) {
       let items = grouped.objectAt(i).items;
 
-      for ( let j = 0 ; j < items.get('length') ; j++ ) {
+      for ( let j = 0 ; j < get(items, 'length') ; j++ ) {
         if ( items.objectAt(j) === node ) {
           return {
             group: i,
@@ -619,6 +626,7 @@ export default Component.extend(Sortable, StickyHeader, {
 
   toggleMulti(nodesToAdd, nodesToRemove) {
     let selectedNodes = get(this, 'selectedNodes');
+    let idField = get(this, 'idField');
 
     if (nodesToRemove.length) {
       // removeObjects doesn't use ArrayProxy-safe looping
@@ -637,7 +645,7 @@ export default Component.extend(Sortable, StickyHeader, {
     function toggle(nodes, on) {
       run.next(() => {
         nodes.forEach((node) => {
-          toggleInput(node, on);
+          toggleInput(node, on, idField);
         });
       });
     }
@@ -666,8 +674,8 @@ function headersToSearchField(headers) {
   return out.filter((x) => !!x);
 }
 
-function toggleInput(node, on) {
-  let id = get(node, 'id');
+function toggleInput(node, on, idField) {
+  let id = get(node, idField);
 
   if ( id ) {
     let input = $(`input[nodeid="${ id }"]`);

@@ -12,9 +12,13 @@ export default Component.extend(Modal, {
 
   layout,
 
+  displayField: 'displayName',
+
+
   actions: {
     delete(cb) {
-      const resources = ( get(this, 'model.resources') || [] ).slice().reverse();
+      const model = get(this, 'model');
+      const resources = ( get(model, 'resources') || [] ).slice().reverse();
 
       eachLimit(resources, 5, (resource) => {
         if ( !resource ) {
@@ -28,7 +32,13 @@ export default Component.extend(Modal, {
       });
 
       cb();
+
       get(this, 'modal').hide();
+
+      const after = get(model, 'after');
+      if ( after ) {
+        after(model);
+      };
     },
 
     cancel() {

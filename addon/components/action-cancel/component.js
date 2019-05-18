@@ -6,7 +6,10 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
   router: service(),
 
-  classNames: ['text-left', 'pt-10'],
+  classNames: ['text-left'],
+  classNameBindings: ['compact::pt-10'],
+
+  compact: false,
 
   layout,
 

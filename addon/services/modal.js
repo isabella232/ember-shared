@@ -28,7 +28,7 @@ export default Service.extend({
     setProperties(this, {
       component,
       model,
-      opt,
+      opt: opt || {},
       visible: true
     });
   },

@@ -20,9 +20,9 @@ export default Component.extend(ThrottledResize, {
   classNames: ['input-yaml'],
   classNameBindings: ['readOnly'],
 
-  downloadClasses:  'btn bg-link icon-btn',
+  downloadClasses:  'btn bg-link',
   copyClasses:      'bg-link',
-  uploadClasses:    'btn bg-link icon-btn',
+  uploadClasses:    'btn bg-link',
 
   name:             null,
   value:            null,

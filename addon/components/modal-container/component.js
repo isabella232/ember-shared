@@ -12,7 +12,7 @@ export default Component.extend({
 
   tagName:           'div',
   classNames:        'modal-container',
-  classNameBindings: ['visible:open:closed'],
+  classNameBindings: ['visible:modal-open:modal-closed'],
 
   component:         alias('modal.component'),
   model:             alias('modal.model'),

@@ -9,24 +9,26 @@ export default Service.extend({
   prefs:   service(),
   session: service(),
 
+  usePref: true,
+
   current: computed(`prefs.${ PREF.THEME }`, `session.isAuthenticated`, {
     get() {
-      return this.getCurrent();
+      return this._getCurrent();
     },
 
     set(key, theme) {
-      this.setCurrent(theme);
+      this._setCurrent(theme);
 
       return theme;
     }
   }),
 
-  getCurrent() {
+  _getCurrent() {
     const cookies = get(this, 'cookies');
     const cookie = cookies.read(COOKIE.THEME, { raw: true })
     let pref = null;
 
-    if ( get(this, 'session.isAuthenticated') ) {
+    if ( get(this, 'usePref') && get(this, 'session.isAuthenticated') ) {
       pref = get(this, `prefs.${ PREF.THEME }`);
     }
 
@@ -39,10 +41,12 @@ export default Service.extend({
     return out;
   },
 
-  setCurrent(theme) {
+  _setCurrent(theme) {
     const cookies = get(this, 'cookies');
 
-    set(this, `prefs.${ PREF.THEME }`, theme);
+    if ( get(this, 'usePref') ) {
+      set(this, `prefs.${ PREF.THEME }`, theme);
+    }
 
     const existing = cookies.read(COOKIE.THEME, { raw: true })
 

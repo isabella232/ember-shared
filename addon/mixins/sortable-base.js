@@ -1,6 +1,7 @@
 import { alias, sort } from '@ember/object/computed';
 import Mixin from '@ember/object/mixin';
 import { get, computed } from '@ember/object';
+import { isArray } from '@ember/array';
 
 export default Mixin.create({
   sortableContent: alias('model'),
@@ -46,7 +47,10 @@ export default Mixin.create({
       var header = headers.findBy('name', this.get('sortBy'));
 
       if ( header ) {
-        let more = get(header, 'sort');
+        let more = get(header, 'sort') || [];
+        if ( more && !isArray(more) ) {
+          more = [more];
+        }
 
         if ( more && more.length) {
           if ( desc ) {

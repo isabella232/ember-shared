@@ -1,7 +1,7 @@
 Confirm Delete
 
 {{#each model.resources as |r|}}
-  <p>{{r.displayName}}</p>
+  <p>{{get r displayField}}</p>
 {{/each}}
 
 {{action-cancel

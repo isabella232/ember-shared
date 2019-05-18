@@ -29,7 +29,19 @@ export default Service.extend({
     this.loadedLanguages = [];
   },
 
-  current: computed('generation', function() {
+  current: computed('generation', {
+    get() {
+      return this._getCurrent();
+    },
+
+    set(key, name) {
+      this._setCurrent(name);
+
+      return name;
+    }
+  }),
+
+  _getCurrent() {
     const cookies = get(this, 'cookies');
     const lang = cookies.read(COOKIE.LANG, { raw: true })
     const save = cookies.read(COOKIE.LANG_SAVE, { raw: true })
@@ -45,9 +57,9 @@ export default Service.extend({
     }
 
     return out;
-  }),
+  },
 
-  setCurrent(lang) {
+  _setCurrent(lang) {
     const cookies = get(this, 'cookies');
     const current = get(this, 'current');
 
@@ -83,7 +95,7 @@ export default Service.extend({
       return this.loadTranslations(lang);
     }));
 
-    this.setCurrent(lang);
+    set(this, 'current', lang);
     await get(this, 'intl').setLocale(locale);
   },
 

@@ -4,8 +4,8 @@ export function initialize(application) {
   application.fallbackRoute = application.fallbackRoute || 'authed';
 
   application.currentPath = '';
-  application.previousPath = ''
-  // application.previousPaths = [];
+  application.previousPaths = [];
+  application.maxPrevPaths = 10;
 
   router.on('routeDidChange', (transition) => {
     if ( !transition.to ) {
@@ -17,12 +17,22 @@ export function initialize(application) {
 
     const path = transition.router.generate(name, ...args);
 
-    if ( path.replace(/\?.*$/) !== application.previousPath.replace(/\?.*$/) ) {
-      application.previousPath = path;
-      // application.previousPaths.push(path);
-      // if ( application.previousPaths.length > 10 ) {
-      //   application.previousPaths.shift();
-      // }
+    if ( path.replace(/\?.*$/) !== application.currentPath.replace(/\?.*$/) ) {
+      const prev = application.currentPath;
+
+      if ( application.ignoreNextRoute ) {
+        application.ignoreNextRoute = false;
+        return;
+      }
+
+      application.currentPath = path;
+
+      if ( prev ) {
+        application.previousPaths.push(prev);
+        if ( application.previousPaths.length > application.maxPrevPaths ) {
+          application.previousPaths.length = application.maxPrevPaths;
+        }
+      }
     }
   });
 
@@ -80,16 +90,20 @@ export function initialize(application) {
 
       args.unshift(to.name);
 
+      application.ignoreNextRoute = true;
+
       this._rootTransitionTo.apply(this, args).catch(() => {
         this._rootTransitionTo(application.fallbackRoute);
       });
     },
 
     goToPrevious() {
-      const path = application.previousPath;
+      const path = application.previousPaths.pop();
+
+      application.ignoreNextRoute = true;
 
       if ( path ) {
-        this._rootTransitionTo(application.previousPath);
+        this._rootTransitionTo(path);
       } else {
         this.goToParent();
       }

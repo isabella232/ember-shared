@@ -16,7 +16,19 @@ export default Service.extend({
   },
 
   triggerAction(actionName) {
-    get(this, 'model').send(actionName, get(this, 'context'));
+    const model = get(this, 'model');
+    const context = get(this, 'context');
+
+    if ( model && model.send && model.actions && model.actions[actionName] ) {
+      model.send(actionName, context);
+    } else if ( context && context.send && context.actions && context.actions[actionName] ) {
+      context.send(actionName, model);
+    } else {
+      x = new Error(`Unknown action: ${ actionName }`);
+      x.model = model;
+      x.context = context;
+      throw x;
+    }
   },
 
   activeActions: computed('model._availableActions.@each.{enabled,single,divider}', function() {

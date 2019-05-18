@@ -1,6 +1,6 @@
 import { throttle } from '@ember/runloop';
 import { inject as service } from '@ember/service';
-import { get, set } from '@ember/object';
+import { get, set, computed } from '@ember/object';
 import $ from 'jquery';
 import Mixin from '@ember/object/mixin';
 
@@ -12,6 +12,7 @@ export default Mixin.create({
   fastboot: service(),
 
   stickyHeader: true,
+  scrollElement: window,
 
   isFixed: false,
   tableId: null,
@@ -32,7 +33,7 @@ export default Mixin.create({
     this.positionHeader();
 
     set(this, '_boundScroll', this._scroll.bind(this));
-    $(window).on('scroll', get(this, '_boundScroll'));
+    $(get(this, '_scrollElement')).on('scroll', get(this, '_boundScroll'));
   },
 
   _boundScroll: null,
@@ -42,6 +43,17 @@ export default Mixin.create({
     }, 30);
   },
 
+  _scrollElement: computed('scrollElement', function() {
+    const val = get(this, 'scrollElement');
+
+    if ( val === 'self' ) {
+      return thi.element;
+    } else if ( typeof val === 'string' ) {
+      return $(val)[0];
+    } else {
+      return window;
+    }
+  }),
 
   willDestroyElement() {
     this._super(...arguments);
@@ -50,7 +62,7 @@ export default Mixin.create({
       return;
     }
 
-    $(window).off('scroll', get(this, '_boundScroll'));
+    $(get(this, '_scrollElement')).off('scroll', get(this, '_boundScroll'));
   },
 
   positionHeader() {
@@ -63,15 +75,16 @@ export default Mixin.create({
     let $table          = $elem.find('> table');
 
     if ( get(this, 'isFixed') ) {
+      const scroll = $(get(this, '_scrollElement'));
       const left   = $table.offset().left;
-      const right  = $(window).width() - left - $table.width();
+      const width  = $table.width();
 
       $header.css({
         position: 'fixed',
         top:      0,
         height:   `${ headerHeight }px`,
         left,
-        right,
+        width,
       });
 
       $elem.css({ 'padding-top': `${ headerHeight }px` });
@@ -95,7 +108,7 @@ export default Mixin.create({
 
     let $elem           = $(this.element);
     let $header         = $elem.find('> .header');
-    let scrollTop      = $(window).scrollTop();
+    let scrollTop      = $(get(this, '_scrollElement')).scrollTop();
     let offset          = $elem.find('> table > thead > tr').offset().top - parseInt($elem.css('padding-top'), 10);
 
     if ( get(this, 'isFixed') ) {

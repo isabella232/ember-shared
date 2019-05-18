@@ -12,6 +12,8 @@ export default Component.extend({
   prefs: service(),
   layout,
 
+  classNames: ['hand'],
+
   value: null,
 
   date:  null,
